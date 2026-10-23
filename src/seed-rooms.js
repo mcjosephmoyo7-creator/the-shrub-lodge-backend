@@ -7,10 +7,8 @@
  * Usage: npm run seed
  */
 
-import dotenv from "dotenv";
+import "./env.js";
 import { supabase } from "./supabase.js";
-
-dotenv.config();
 
 const CDN = "https://static.wixstatic.com/media/";
 
