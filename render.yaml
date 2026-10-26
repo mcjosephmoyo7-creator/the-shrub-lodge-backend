@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: the-shrub-lodge-backend
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SECRET_KEY
+        sync: false
+      - key: FRONTEND_URL
+        value: https://the-shrub-lodge.vercel.app
