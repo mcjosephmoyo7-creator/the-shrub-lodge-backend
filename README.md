@@ -66,6 +66,30 @@ URLs can be allowed at once (for example
 `http://localhost:3000,https://the-shrub-lodge.vercel.app`). Run `npm run seed`
 once to load the rooms table.
 
+### Troubleshooting: "Missing environment variable"
+
+If the deploy logs show:
+
+```
+Error: Missing environment variable: SUPABASE_URL
+```
+
+the process started without that variable. The `.env` file is git-ignored, so it
+does **not** exist on Render. Set the variables in the Render dashboard:
+
+**Service → Environment → Environment Variables**
+
+- `SUPABASE_URL`
+- `SUPABASE_SECRET_KEY`
+- `FRONTEND_URL`
+
+Then redeploy. Note that `sync: false` values in `render.yaml` are intentionally
+not stored in git and are only applied when the service is created from the
+Blueprint; for a manually created Web Service, add them by hand.
+
+Another sign the Blueprint isn't applied: the logs show Node 24 even though
+`render.yaml` sets `NODE_VERSION=20`.
+
 ## Quick test
 
 Once running, these should respond in a browser:

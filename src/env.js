@@ -25,8 +25,9 @@ export function requireEnv(name) {
   if (!value) {
     throw new Error(
       `Missing environment variable: ${name}\n` +
-        `Expected to find it in ${envPath}.\n` +
-        "Copy .env.example to .env and fill in the value."
+        `Local development: add it to ${envPath} (copy .env.example to .env).\n` +
+        "Hosted deployments (Render, etc.): add it under the service's\n" +
+        "Environment Variables in the dashboard, then redeploy."
     );
   }
 
