@@ -50,6 +50,22 @@ npm run seed     # (re)load the room catalogue into Supabase
 | `image_url`       | text                     |
 | `created_at`      | timestamptz (default now)|
 
+## Deployment (Render)
+
+`render.yaml` describes the service (Node 20, free plan, health check at
+`/api/health`). Create a Blueprint from the repo and set the secret env vars:
+
+```env
+SUPABASE_URL=your-supabase-project-url
+SUPABASE_SECRET_KEY=your-supabase-secret-key
+FRONTEND_URL=https://the-shrub-lodge.vercel.app
+```
+
+`FRONTEND_URL` accepts a comma-separated list, so production and Vercel preview
+URLs can be allowed at once (for example
+`http://localhost:3000,https://the-shrub-lodge.vercel.app`). Run `npm run seed`
+once to load the rooms table.
+
 ## Quick test
 
 Once running, these should respond in a browser:
