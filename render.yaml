@@ -13,5 +13,13 @@ services:
         sync: false
       - key: SUPABASE_SECRET_KEY
         sync: false
+      - key: ADMIN_API_PROXY_SECRET
+        sync: false
+      - key: CONTACT_API_PROXY_SECRET
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: ADMIN_RESET_FROM_EMAIL
+        sync: false
       - key: FRONTEND_URL
         value: https://the-shrub-lodge.vercel.app

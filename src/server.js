@@ -3,6 +3,9 @@ import "./env.js";
 import express from "express";
 import cors from "cors";
 import { supabase } from "./supabase.js";
+import adminAuth from "./admin-auth.js";
+import adminApi from "./admin-api.js";
+import publicApi from "./public-api.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -17,7 +20,14 @@ const allowedOrigins = (process.env.FRONTEND_URL || "http://localhost:3000")
 
 app.use(cors({ origin: allowedOrigins }));
 
-app.use(express.json());
+app.use(express.json({ limit: "1mb" }));
+
+app.use("/api/public", publicApi);
+
+// Admin requests are available only to the same-origin frontend proxy. The
+// proxy secret is server-side and must never be exposed to browser code.
+app.use("/api/admin", adminAuth);
+app.use("/api/admin", adminApi);
 
 // Home route
 app.get("/", (req, res) => {
